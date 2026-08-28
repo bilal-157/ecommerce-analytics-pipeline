@@ -1,10 +1,12 @@
 version: '3.8'
 
 services:
-  # 1. PostgreSQL - Lightweight metadata store
+  # ============================================
+  # 1. PostgreSQL - Data Warehouse
+  # ============================================
   postgres:
     image: postgres:14
-    container_name: ecommerce-postgres
+    container_name: postgres
     environment:
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: airflow
@@ -13,46 +15,49 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    mem_limit: 256m
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U airflow"]
       interval: 10s
       timeout: 5s
       retries: 5
 
-  # 2. Redis - For Airflow Celery backend
+  # ============================================
+  # 2. Redis - Airflow Backend
+  # ============================================
   redis:
     image: redis:7.2-alpine
-    container_name: ecommerce-redis
+    container_name: redis
     ports:
       - "6379:6379"
-    mem_limit: 128m
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
       timeout: 5s
       retries: 5
 
-  # 3. Zookeeper - For Kafka
+  # ============================================
+  # 3. Zookeeper - Kafka Coordination
+  # ============================================
   zookeeper:
     image: confluentinc/cp-zookeeper:7.4.0
-    container_name: ecommerce-zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
-    ports:
-      - "2181:2181"
-    mem_limit: 256m
     healthcheck:
       test: ["CMD", "bash", "-c", "echo 'ruok' | nc localhost 2181"]
       interval: 10s
       timeout: 5s
       retries: 5
 
+  # ============================================
   # 4. Kafka Broker
+  # ============================================
   kafka:
     image: confluentinc/cp-server:7.4.0
-    container_name: ecommerce-kafka
+    container_name: kafka
     depends_on:
       zookeeper:
         condition: service_healthy
@@ -66,17 +71,18 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
-    mem_limit: 512m
     healthcheck:
       test: ["CMD", "bash", "-c", "nc -z localhost 9092"]
       interval: 10s
       timeout: 5s
       retries: 5
 
+  # ============================================
   # 5. Airflow Webserver
+  # ============================================
   airflow-webserver:
     image: apache/airflow:2.9.1
-    container_name: ecommerce-airflow-webserver
+    container_name: airflow-webserver
     depends_on:
       postgres:
         condition: service_healthy
@@ -87,12 +93,11 @@ services:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__WEBSERVER__SECRET_KEY: this_is_a_very_secured_key
     ports:
-      - "8080:8080"
+      - "8081:8080"
     volumes:
       - ./airflow/dags:/opt/airflow/dags
       - ./airflow/logs:/opt/airflow/logs
       - ./airflow/plugins:/opt/airflow/plugins
-    mem_limit: 512m
     command: >
       bash -c "
       airflow db init &&
@@ -100,10 +105,12 @@ services:
       airflow webserver -p 8080
       "
 
+  # ============================================
   # 6. Airflow Scheduler
+  # ============================================
   airflow-scheduler:
     image: apache/airflow:2.9.1
-    container_name: ecommerce-airflow-scheduler
+    container_name: airflow-scheduler
     depends_on:
       - airflow-webserver
     environment:
@@ -112,7 +119,6 @@ services:
     volumes:
       - ./airflow/dags:/opt/airflow/dags
       - ./airflow/logs:/opt/airflow/logs
-    mem_limit: 256m
     command: scheduler
 
 volumes:
