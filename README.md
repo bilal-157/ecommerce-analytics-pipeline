@@ -466,39 +466,10 @@ MIT License - see [LICENSE](LICENSE) file for details.
 **Built with ❤️ using Python, Kafka, Airflow, dbt, and Docker**
 
 </div>
-EOF
 
-echo "✅ Complete README.md created!"
-```
 
----
 
-## 📝 QUICK CHECK
 
-```bash
-# View the README
-cat README.md
-
-# Check file size
-wc -l README.md
-```
-
----
-
-## ✅ WHAT'S INCLUDED
-
-| Section | Purpose |
-|:---|:---|
-| **Badges** | Professional look |
-| **Project Overview** | Quick introduction |
-| **Architecture** | Visual diagram |
-| **Tech Stack** | Tools used |
-| **Project Structure** | File organization |
-| **Quick Start** | Step-by-step setup |
-| **Dashboard Features** | What it shows |
-| **Airflow DAGs** | Orchestration details |
-| **Data Flow** | How data moves |
-| **Skills** | What you learned |
 | **Sample Queries** | SQL examples |
 | **Troubleshooting** | Common fixes |
 | **Screenshots** | Visual proof |
