@@ -10,9 +10,6 @@
 ![dbt](https://img.shields.io/badge/dbt-1.7-orange?logo=dbt)
 ![Flask](https://img.shields.io/badge/Flask-2.3-white?logo=flask)
 
-[![CI/CD](https://github.com/yourusername/ecommerce-analytics-pipeline/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/ecommerce-analytics-pipeline/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 </div>
 
 ## 📊 Project Overview
@@ -155,7 +152,7 @@ ecommerce-analytics-pipeline/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/ecommerce-analytics-pipeline.git
+git clone https://github.com/bilal-157/ecommerce-analytics-pipeline.git
 cd ecommerce-analytics-pipeline
 ```
 
@@ -423,29 +420,13 @@ docker-compose down
 
 ---
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-MIT License - see [LICENSE](LICENSE) file for details.
-
----
-
 ## 👤 Author
 
-**Your Name**
+**Muhammad Bilal**
 
-[![GitHub](https://img.shields.io/badge/GitHub-@yourusername-181717?logo=github)](https://github.com/yourusername)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-YourName-0A66C2?logo=linkedin)](https://linkedin.com/in/yourprofile)
-[![Twitter](https://img.shields.io/badge/Twitter-@yourhandle-1DA1F2?logo=twitter)](https://twitter.com/yourhandle)
+[![GitHub](https://img.shields.io/badge/GitHub-bilal--157-181717?logo=github)](https://github.com/bilal-157/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Muhammad%20Bilal-0A66C2?logo=linkedin)](https://linkedin.com/in/muhammadbilal711)
+[![LeetCode](https://img.shields.io/badge/LeetCode-Bilal157-FFA116?logo=leetcode)](https://leetcode.com/u/Bilal157/)
 
 ---
 
@@ -466,13 +447,3 @@ MIT License - see [LICENSE](LICENSE) file for details.
 **Built with ❤️ using Python, Kafka, Airflow, dbt, and Docker**
 
 </div>
-
-
-
-
-| **Sample Queries** | SQL examples |
-| **Troubleshooting** | Common fixes |
-| **Screenshots** | Visual proof |
-| **Future Improvements** | Roadmap |
-
----
