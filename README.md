@@ -33,32 +33,32 @@ An **end-to-end production-grade data pipeline** for e-commerce analytics with *
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                    DATA PIPELINE ARCHITECTURE                          │
+│                    DATA PIPELINE ARCHITECTURE                           │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                         │
-│  📤 Data Sources                                                       │
-│  ├── Kafka Producer (Fake Orders) ──► Topic: orders                   │
-│  └── Kafka Producer (FakeStore API) ──► Topic: api-orders             │
-│                     ↓                                                  │
-│  📨 Streaming Layer                                                    │
-│  └── Apache Kafka (localhost:9092)                                    │
-│                     ↓                                                  │
-│  📥 Data Ingestion                                                     │
-│  ├── kafka_consumer.py ──► fact_orders                               │
-│  └── kafka_consumer_bronze.py ──► bronze_orders                      │
-│                     ↓                                                  │
-│  🗄️  Data Warehouse                                                    │
-│  ├── PostgreSQL (OLTP)                                                │
-│  ├── bronze_orders (raw)                                              │
-│  ├── silver_orders (cleaned)                                          │
-│  └── gold_daily_metrics (aggregated)                                 │
-│                     ↓                                                  │
-│  🔄 Orchestration & Transformation                                    │
-│  ├── Airflow (3 DAGs: ETL, Quality, Reports)                         │
-│  └── dbt (Bronze → Silver → Gold)                                    │
-│                     ↓                                                  │
-│  📊 Visualization                                                      │
-│  └── Flask Dashboard (Live Analytics)                                 │
+│  📤 Data Sources                                                        │
+│  ├── Kafka Producer (Fake Orders) ──► Topic: orders                     │
+│  └── Kafka Producer (FakeStore API) ──► Topic: api-orders               │
+│                     ↓                                                   │
+│  📨 Streaming Layer                                                     │
+│  └── Apache Kafka (localhost:9092)                                      │
+│                     ↓                                                   │
+│  📥 Data Ingestion                                                      │
+│  ├── kafka_consumer.py ──► fact_orders                                  │
+│  └── kafka_consumer_bronze.py ──► bronze_orders                         │
+│                     ↓                                                   │
+│  🗄️  Data Warehouse                                                     │
+│  ├── PostgreSQL (OLTP)                                                  │
+│  ├── bronze_orders (raw)                                                │
+│  ├── silver_orders (cleaned)                                            │
+│  └── gold_daily_metrics (aggregated)                                    │
+│                     ↓                                                   │
+│  🔄 Orchestration & Transformation                                      │
+│  ├── Airflow (3 DAGs: ETL, Quality, Reports)                            │
+│  └── dbt (Bronze → Silver → Gold)                                       │
+│                     ↓                                                   │
+│  📊 Visualization                                                       │
+│  └── Flask Dashboard (Live Analytics)                                   │
 │                                                                         │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
