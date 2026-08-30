@@ -224,8 +224,8 @@ docker ps
 | DAG | Purpose | Schedule |
 |:---|:---|:---|
 | `etl_pipeline` | Extract, Transform, Load | Daily |
-| `data_quality` | Data quality checks | Hourly |
-| `daily_report` | Business reporting | Daily |
+| `data_quality` | Data quality checks      | Hourly|
+| `daily_report` | Business reporting       | Daily |
 
 ### DAG Dependencies
 
